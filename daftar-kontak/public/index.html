@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kontak App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark shadow">
+    <div class="container d-flex justify-content-between">
+        <span class="navbar-brand fw-bold">
+            <i class="bi bi-person-lines-fill"></i> Kontak App
+        </span>
+        <span class="text-light small">2311102150 Mohammad Nizal Maulana</span>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
+    <!-- Statistik -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <div class="card p-3 text-center">
+                <h6>Total Kontak</h6>
+                <h3 id="totalKontak">0</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h4 class="fw-bold mb-0">Daftar Kontak</h4>
+                <small class="subtitle">Kelola semua kontak dengan mudah</small>
+            </div>
+            <a href="form.html" class="btn btn-primary">
+                <i class="bi bi-plus-lg"></i> Tambah
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table id="tabel" class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>No HP</th>
+                        <th>Email</th>
+                        <th class="text-center">Aksi</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+$(document).ready(function () {
+
+    const table = $('#tabel').DataTable({
+        ajax: {
+            url: 'http://localhost:3000/kontak',
+            dataSrc: function(json) {
+                document.getElementById('totalKontak').innerText = json.data.length;
+                return json.data;
+            }
+        },
+        columns: [
+            { data: 'nama' },
+            { data: 'nohp' },
+            { data: 'email' },
+            {
+                data: 'id',
+                className: 'text-center',
+                render: function (data) {
+                    return `
+                        <a href="edit.html?id=${data}" class="btn btn-warning btn-sm me-1">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <button onclick="hapus(${data})" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    `;
+                }
+            }
+        ]
+    });
+
+});
+
+function hapus(id) {
+    Swal.fire({
+        title: 'Yakin hapus?',
+        text: 'Data tidak bisa dikembalikan!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`http://localhost:3000/kontak/${id}`, {
+                method: 'DELETE'
+            }).then(() => {
+                Swal.fire('Berhasil!', 'Data dihapus', 'success')
+                .then(() => location.reload());
+            });
+        }
+    });
+}
+</script>
+
+</body>
+</html>
