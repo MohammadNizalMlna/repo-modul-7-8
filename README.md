@@ -72,13 +72,22 @@ Website daftar-kontak ini memiliki struktur halaman sebagai berikut :
 Halaman ini menampilkan data kontak ddalam bentuk tabel memakai jQuery DataTables. Data diambil dari server dalam formaat JSON dan ditampilkan secara dinamis. Pada data ini juga tersedia tombol aksi untuk melakukan update dan hapus data.
 <img src="/daftar-kontak/assets/home.png">
 
+ketika tombol aksi hapus ditekan maka aplikasi akan memunculkan popup/notifikasi konfirmasi apakah data tersebut akan dihapus atau tidak
+<img src="/daftar-kontak/assets/hapus.png">
+
 ### Halaman Form (Tambah Kontak)
 Halaman ini digunakan untuk menambahkan data kontak baru. User dapat mengisi form berupa nama, nomor HP dan email. Data yang dimasukkan akan dikirim ke server menggunakan AJAX dalam format JSON tanpa reload halaman. 
 <img src="/daftar-kontak/assets/forrm.png">
 
+setalah button simpan ditekan akan muncul popup atau notifikasi data berhasil ditambahkan
+<img src="/daftar-kontak/assets/tambahBerhasil.png">
+
 ### Halaman Edit (Edit data kontak)
 Halaman ini difunakan untuk mengubah data kontak yang sudah ada. Data kontak akan ditampilkan secara otomatis pada form berdasarkan ID yang dipilih dari halaman utama. User dapat mengubah data dengan validasi yang sama seperti pada form tambah. Setelah data diperbarui, perubahan dikirim ke server.
 <img src="/daftar-kontak/assets/edit.png">
+
+setalah button simpan ditekan akan muncul popup atau notifikasi data berhasil diperbarui
+<img src="/daftar-kontak/assets/editberhasil.png">
 
 ## 4. Kode Program
 ### A. `server.js`
