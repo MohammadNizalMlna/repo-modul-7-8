@@ -1,7 +1,6 @@
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -32,17 +31,14 @@ app.get('/kontak/:id', (req, res) => {
 // CREATE
 app.post('/kontak', (req, res) => {
     let data = readData();
-
     const newData = {
         id: Date.now(),
         nama: req.body.nama,
         nohp: req.body.nohp,
         email: req.body.email
     };
-
     data.push(newData);
     writeData(data);
-
     res.send('Berhasil');
 });
 
@@ -56,7 +52,6 @@ app.put('/kontak/:id', (req, res) => {
         }
         return k;
     });
-
     writeData(data);
     res.send('Updated');
 });
