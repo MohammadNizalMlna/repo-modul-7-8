@@ -44,7 +44,7 @@
 **Node JS** merupakan runtime environment yang memungkinkan JavaScript dijalankan di sisi server. Pada aplikasi ini, NodeJS digunakan untuk membuat server dan menangani proses CRUD terhadap data yang disimpan dalam file JSON.<br>
 **AJAX (Asynchronous JavaScript and XML)** merupakan teknik yang digunakan untuk melakukan komunikasi dengan server secara asynchronous tanpa harus melakukan reload halaman. Dalam aplikasi ini, AJAX digunakan untuk mengirim dan mengambil data dari server sehingga aplikasi menjadi lebih responsif dan efisien.<br>
 **JSON (JavaScript Object Notation)** merupakan format pertukaran data yang ringan dan mudah dibaca oleh manusia maupun mesin. JSON digunakan sebagai media penyimpanan data pada aplikasi ini dan sebagai format data yang dikirim dari server ke client.
-## 2. Stuktur Halaman
+## 2. Stuktur Folder
 ```
 daftar-kontak/
 │
